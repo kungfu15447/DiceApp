@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.diceapp.Models.Dice;
+
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
@@ -20,15 +22,12 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<ImageView> die;
-    TextView[] histories;
     Button btnRoll;
     Button btnClear;
     Button btnIncrement;
     Button btnDecrement;
-    LinearLayout linearHistory;
     LinearLayout linearDie;
     boolean rolled = false;
-    int historyIndex = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,20 +37,17 @@ public class MainActivity extends AppCompatActivity {
         btnClear = findViewById(R.id.btnClear);
         btnIncrement = findViewById(R.id.btnIncrement);
         btnDecrement = findViewById(R.id.btnDecrement);
-        linearHistory = findViewById(R.id.linearHistory);
         linearDie = findViewById(R.id.linearDie);
         die = new ArrayList<>();
-        histories = new TextView[5];
     }
 
     public void onClickRoll(View view) {
         if (!rolled) {
             rolled = true;
             Random rng = new Random();
-            String rollHistory = "";
             for (ImageView dice : die) {
-                int roll = rng.nextInt(6)+ 1;
-                switch(roll) {
+                int roll = rng.nextInt(6) + 1;
+                switch (roll) {
                     case 1:
                         dice.setImageResource(R.drawable.one);
                         break;
@@ -71,53 +67,10 @@ public class MainActivity extends AppCompatActivity {
                         dice.setImageResource(R.drawable.six);
                         break;
                 }
-                if (rollHistory.isEmpty()) {
-                    rollHistory = rollHistory + "" + roll;
-                }else {
-                    rollHistory = rollHistory + " + " + roll;
-                }
+
             }
-            if (!rollHistory.isEmpty()) {
-                addToHistory("" + historyIndex + "." + " " + rollHistory);
-                historyIndex++;
-            }
+            rolled = false;
         }
-        rolled = false;
-    }
-
-    private void addToHistory(String rollHistory) {
-        TextView history = new TextView(getBaseContext());
-        history.setText(rollHistory);
-        history.setTextSize(24);
-
-            TextView currentView = new TextView(getBaseContext());
-            TextView nextView = new TextView(getBaseContext());
-            for (int i = 0; i < histories.length; i++) {
-                if (i == 0) {
-                    currentView = histories[i];
-                    histories[i] = history;
-                    nextView = histories[i+1];
-                }else if (i == histories.length - 1){
-                    histories[histories.length-1] = currentView;
-                } else {
-                    histories[i] = currentView;
-                    currentView = nextView;
-                    nextView = histories[i+1];
-                }
-            }
-        linearHistory.removeAllViews();
-        for (int i = 0; i < histories.length; i++) {
-            if (histories[i] != null) {
-                linearHistory.addView(histories[i]);
-            }
-
-        }
-    }
-
-    public void clearHistory(View view) {
-        linearHistory.removeAllViews();
-        historyIndex = 1;
-        histories = new TextView[5];
     }
 
     public void incrementDie(View view) {
