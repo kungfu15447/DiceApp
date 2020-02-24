@@ -2,6 +2,7 @@ package com.example.diceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -11,6 +12,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.r0adkll.slidr.Slidr;
+import com.r0adkll.slidr.model.SlidrInterface;
+
 import org.w3c.dom.Text;
 
 import java.lang.reflect.Array;
@@ -19,6 +23,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    SlidrInterface slidr;
     ArrayList<ImageView> die;
     TextView[] histories;
     Button btnRoll;
@@ -39,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         linearDie = findViewById(R.id.linearDie);
         die = new ArrayList<>();
         histories = new TextView[5];
+
+
     }
 
     public void onClickRoll(View view) {
@@ -191,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void showHistory(View view){
         Intent intent = new Intent(this, HistoryActivity.class);
-        
         startActivity(intent);
     }
 }

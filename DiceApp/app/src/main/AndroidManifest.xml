@@ -12,8 +12,9 @@
         <activity
             android:name=".HistoryActivity"
             android:label="@string/title_activity_history"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+            android:theme="@style/AppTheme.SliderActivityTheme"></activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme.SliderActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
