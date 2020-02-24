@@ -199,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showHistory(View view){
-        
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
     }
 }
