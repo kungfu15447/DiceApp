@@ -2,6 +2,7 @@ package com.example.diceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +16,7 @@ import com.example.diceapp.Models.DiceHistory;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     ArrayList<ImageView> die;
     ArrayList<ArrayList<Dice>> dieHistory;

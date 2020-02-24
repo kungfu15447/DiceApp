@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/btnRoll"
-        android:layout_width="88dp"
-        android:layout_height="51dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:onClick="onClickRoll"
         android:text="Roll"
@@ -30,9 +30,9 @@
 
     <Button
         android:id="@+id/btnIncrement"
-        android:layout_width="103dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:onClick="incrementDie"
         android:text="Increment"
         app:layout_constraintEnd_toStartOf="@+id/btnRoll"
@@ -40,8 +40,8 @@
 
     <Button
         android:id="@+id/btnDecrement"
-        android:layout_width="106dp"
-        android:layout_height="48dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:onClick="decrementDie"
         android:text="Decrement"
         app:layout_constraintBottom_toBottomOf="@+id/btnIncrement"
