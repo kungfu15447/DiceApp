@@ -1,13 +1,6 @@
-package com.example.diceapp;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.example.diceapp.Models.Dice;
+package com.example.diceapp.Models;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class DiceHistory extends ArrayList<ArrayList<Dice>> {
     private static DiceHistory instance = new DiceHistory();
