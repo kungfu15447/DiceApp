@@ -169,16 +169,16 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean checkIfLayoutIsSlim(LinearLayout linearLayout) {
         double totalHeight = 0;
-        double totalHeighWithExtraLayout = 0;
-        double layoutHeigh = linearLayout.getHeight();
+        double totalHeightWithExtraLayout = 0;
+        double layoutHeight = linearLayout.getHeight();
         for (int i = 0; i < linearLayout.getChildCount(); i++) {
             LinearLayout currentLayout = (LinearLayout) linearLayout.getChildAt(i);
             totalHeight += currentLayout.getHeight();
             if (i == linearLayout.getChildCount() - 1) {
-                totalHeighWithExtraLayout = totalHeight + currentLayout.getHeight();
+                totalHeightWithExtraLayout = totalHeight + currentLayout.getHeight();
             }
         }
-        if (totalHeighWithExtraLayout < layoutHeigh) {
+        if (totalHeightWithExtraLayout < layoutHeight) {
             return false;
         }else {
             return true;
