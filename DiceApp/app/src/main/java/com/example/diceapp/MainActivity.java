@@ -34,7 +34,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnRoll = findViewById(R.id.btnRoll);
-        btnClear = findViewById(R.id.btnClear);
         btnIncrement = findViewById(R.id.btnIncrement);
         btnDecrement = findViewById(R.id.btnDecrement);
         linearDie = findViewById(R.id.linearDie);
@@ -67,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                         dice.setImageResource(R.drawable.six);
                         break;
                 }
-
             }
             rolled = false;
         }
@@ -152,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showHistory(View view){
+        Intent intent = new Intent(this, HistoryActivity.class);
         
+        startActivity(intent);
     }
 }
