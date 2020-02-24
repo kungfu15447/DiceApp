@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/btnRoll"
+        android:layout_width="88dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="20dp"
+        android:onClick="onClickRoll"
+        android:text="Roll"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearDie" />
+
+    <LinearLayout
+        android:id="@+id/linearDie"
+        android:layout_width="0dp"
+        android:layout_height="221dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
+
+    <Button
+        android:id="@+id/btnIncrement"
+        android:layout_width="103dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
+        android:onClick="incrementDie"
+        android:text="Increment"
+        app:layout_constraintEnd_toStartOf="@+id/btnRoll"
+        app:layout_constraintTop_toBottomOf="@+id/btnRoll" />
+
+    <Button
+        android:id="@+id/btnDecrement"
+        android:layout_width="106dp"
+        android:layout_height="48dp"
+        android:onClick="decrementDie"
+        android:text="Decrement"
+        app:layout_constraintBottom_toBottomOf="@+id/btnIncrement"
+        app:layout_constraintStart_toEndOf="@+id/btnRoll" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,6 @@ package com.example.diceapp;
 
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.r0adkll.slidr.Slidr;
