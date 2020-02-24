@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnClear;
     Button btnIncrement;
     Button btnDecrement;
-    LinearLayout linearHistory;
     LinearLayout linearDie;
     boolean rolled = false;
     int historyIndex = 1;
@@ -35,10 +34,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         btnRoll = findViewById(R.id.btnRoll);
-        btnClear = findViewById(R.id.btnClear);
         btnIncrement = findViewById(R.id.btnIncrement);
         btnDecrement = findViewById(R.id.btnDecrement);
-        linearHistory = findViewById(R.id.linearHistory);
         linearDie = findViewById(R.id.linearDie);
         die = new ArrayList<>();
         histories = new TextView[5];
@@ -86,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addToHistory(String rollHistory) {
-        TextView history = new TextView(getBaseContext());
+        /*TextView history = new TextView(getBaseContext());
         history.setText(rollHistory);
         history.setTextSize(24);
 
@@ -111,13 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 linearHistory.addView(histories[i]);
             }
 
-        }
-    }
-
-    public void clearHistory(View view) {
-        linearHistory.removeAllViews();
-        historyIndex = 1;
-        histories = new TextView[5];
+        }*/
     }
 
     public void incrementDie(View view) {
@@ -200,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showHistory(View view){
         Intent intent = new Intent(this, HistoryActivity.class);
+        
         startActivity(intent);
     }
 }
