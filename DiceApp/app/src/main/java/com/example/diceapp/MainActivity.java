@@ -22,8 +22,8 @@ import java.util.Random;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<ImageView> die;
+    ArrayList<ArrayList<Dice>> dieHistory;
     Button btnRoll;
-    Button btnClear;
     Button btnIncrement;
     Button btnDecrement;
     LinearLayout linearDie;
@@ -38,37 +38,45 @@ public class MainActivity extends AppCompatActivity {
         btnDecrement = findViewById(R.id.btnDecrement);
         linearDie = findViewById(R.id.linearDie);
         die = new ArrayList<>();
+        dieHistory = DiceHistory.getInstance();
     }
 
     public void onClickRoll(View view) {
         if (!rolled) {
             rolled = true;
+            ArrayList<Dice> rolls = new ArrayList<>();
             Random rng = new Random();
-            for (ImageView dice : die) {
+            for (ImageView diceView : die) {
                 int roll = rng.nextInt(6) + 1;
                 switch (roll) {
                     case 1:
-                        dice.setImageResource(R.drawable.one);
+                        diceView.setImageResource(R.drawable.one);
                         break;
                     case 2:
-                        dice.setImageResource(R.drawable.two);
+                        diceView.setImageResource(R.drawable.two);
                         break;
                     case 3:
-                        dice.setImageResource(R.drawable.three);
+                        diceView.setImageResource(R.drawable.three);
                         break;
                     case 4:
-                        dice.setImageResource(R.drawable.four);
+                        diceView.setImageResource(R.drawable.four);
                         break;
                     case 5:
-                        dice.setImageResource(R.drawable.five);
+                        diceView.setImageResource(R.drawable.five);
                         break;
                     case 6:
-                        dice.setImageResource(R.drawable.six);
+                        diceView.setImageResource(R.drawable.six);
                         break;
                 }
+                Dice dice = new Dice(diceView, roll);
+                rolls.add(dice);
             }
             rolled = false;
         }
+    }
+
+    private void addToHistory(ArrayList<Dice> rolls) {
+        dieHistory.add(rolls);
     }
 
     public void incrementDie(View view) {
