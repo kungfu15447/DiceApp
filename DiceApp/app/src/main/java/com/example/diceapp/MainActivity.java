@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
     Button btnDecrement;
     LinearLayout linearDie;
     boolean rolled = false;
+    private static final int MAXIMUM_DICE_LIMIT = 6;
+    private static final int MINIMUM_DICE_LIMIT = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +79,17 @@ public class MainActivity extends Activity {
     }
 
     public void incrementDie(View view) {
-        ImageView dice = new ImageView(getBaseContext());
-        dice.setImageResource(R.drawable.question);
-        int width = 200;
-        int height = 200;
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
-        dice.setLayoutParams(params);
-
+        if (die.size() < MAXIMUM_DICE_LIMIT) {
+            ImageView dice = new ImageView(getBaseContext());
+            dice.setImageResource(R.drawable.question);
+            int width = 200;
+            int height = 200;
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+            dice.setLayoutParams(params);
+            linearDie.addView(dice);
+            die.add(dice);
+        }
+        /*
         if (checkIfLayoutIsThicc(linearDie) && !checkIfLayoutIsSlim(linearDie)) {
             LinearLayout diceLayout = new LinearLayout(this);
             int layoutWidth = linearDie.getWidth();
@@ -97,7 +103,7 @@ public class MainActivity extends Activity {
             LinearLayout lastLayout = (LinearLayout) linearDie.getChildAt(linearDie.getChildCount()-1);
             lastLayout.addView(dice);
             die.add(dice);
-        }
+        }*/
 
     }
 
@@ -143,14 +149,9 @@ public class MainActivity extends Activity {
     }
 
     public void decrementDie(View view) {
-        if (die.size() != 0) {
-            LinearLayout lastLayout = (LinearLayout) linearDie.getChildAt(linearDie.getChildCount() - 1);
-            ImageView dice = (ImageView) lastLayout.getChildAt(lastLayout.getChildCount()-1);
-            lastLayout.removeView(dice);
-            if (lastLayout.getChildCount() == 0) {
-                linearDie.removeView(lastLayout);
-            }
-            die.remove(dice);
+        if (die.size() != MINIMUM_DICE_LIMIT) {
+            linearDie.removeViewAt(linearDie.getChildCount()-1);
+            die.remove(die.size()-1);
         }
     }
 

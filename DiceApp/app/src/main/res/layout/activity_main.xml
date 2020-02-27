@@ -9,9 +9,10 @@
 
     <LinearLayout
         android:id="@+id/linearDie"
-        android:layout_width="409dp"
-        android:layout_height="225dp"
-        android:orientation="vertical"
+        android:layout_width="342dp"
+        android:layout_height="93dp"
+        android:layout_marginTop="100dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></LinearLayout>
