@@ -45,30 +45,38 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Dice> rolls = new ArrayList<>();
             Random rng = new Random();
             for (ImageView diceView : die) {
+                ImageView diceToHistory = new ImageView(getBaseContext());
                 int roll = rng.nextInt(6) + 1;
                 switch (roll) {
                     case 1:
                         diceView.setImageResource(R.drawable.one);
+                        diceToHistory.setImageResource(R.drawable.one);
                         break;
                     case 2:
                         diceView.setImageResource(R.drawable.two);
+                        diceToHistory.setImageResource(R.drawable.two);
                         break;
                     case 3:
                         diceView.setImageResource(R.drawable.three);
+                        diceToHistory.setImageResource(R.drawable.three);
                         break;
                     case 4:
                         diceView.setImageResource(R.drawable.four);
+                        diceToHistory.setImageResource(R.drawable.four);
                         break;
                     case 5:
                         diceView.setImageResource(R.drawable.five);
+                        diceToHistory.setImageResource(R.drawable.five);
                         break;
                     case 6:
                         diceView.setImageResource(R.drawable.six);
+                        diceToHistory.setImageResource(R.drawable.six);
                         break;
                 }
-                Dice dice = new Dice(diceView, roll);
+                Dice dice = new Dice(diceToHistory, roll);
                 rolls.add(dice);
             }
+            addToHistory(rolls);
             rolled = false;
         }
     }
