@@ -1,10 +1,15 @@
 package com.example.diceapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -27,6 +32,8 @@ public class MainActivity extends Activity {
     boolean rolled = false;
     private static final int MAXIMUM_DICE_LIMIT = 6;
     private static final int MINIMUM_DICE_LIMIT = 0;
+    private int diceWidth;
+    private int diceHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +57,27 @@ public class MainActivity extends Activity {
                 switch (roll) {
                     case 1:
                         diceView.setImageResource(R.drawable.one);
+                        diceView.setTag(R.drawable.one);
                         break;
                     case 2:
                         diceView.setImageResource(R.drawable.two);
+                        diceView.setTag(R.drawable.two);
                         break;
                     case 3:
                         diceView.setImageResource(R.drawable.three);
+                        diceView.setTag(R.drawable.three);
                         break;
                     case 4:
                         diceView.setImageResource(R.drawable.four);
+                        diceView.setTag(R.drawable.four);
                         break;
                     case 5:
                         diceView.setImageResource(R.drawable.five);
+                        diceView.setTag(R.drawable.five);
                         break;
                     case 6:
                         diceView.setImageResource(R.drawable.six);
+                        diceView.setTag(R.drawable.six);
                         break;
                 }
                 Dice dice = new Dice(diceView, roll);
@@ -82,70 +95,15 @@ public class MainActivity extends Activity {
         if (die.size() < MAXIMUM_DICE_LIMIT) {
             ImageView dice = new ImageView(getBaseContext());
             dice.setImageResource(R.drawable.question);
-            int width = 200;
-            int height = 200;
+            int width = linearDie.getWidth() / 6;
+            int height = width;
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
             dice.setLayoutParams(params);
             linearDie.addView(dice);
+            dice.setTag(R.drawable.question);
             die.add(dice);
         }
-        /*
-        if (checkIfLayoutIsThicc(linearDie) && !checkIfLayoutIsSlim(linearDie)) {
-            LinearLayout diceLayout = new LinearLayout(this);
-            int layoutWidth = linearDie.getWidth();
-            int layoutHeight = linearDie.getHeight() / 3;
-            LinearLayout.LayoutParams diceLayoutParams = new LinearLayout.LayoutParams(layoutWidth, layoutHeight);
-            diceLayout.setLayoutParams(diceLayoutParams);
-            linearDie.addView(diceLayout);
-        }
 
-        if (!checkIfLayoutIsThicc(linearDie)) {
-            LinearLayout lastLayout = (LinearLayout) linearDie.getChildAt(linearDie.getChildCount()-1);
-            lastLayout.addView(dice);
-            die.add(dice);
-        }*/
-
-    }
-
-    private boolean checkIfLayoutIsThicc(LinearLayout linearLayout) {
-        double totalWidth = 0;
-        double totalWidthWithExtraDice = 0;
-        double layoutWidth = linearLayout.getWidth();
-        if (linearLayout.getChildCount() == 0) {
-            return true;
-        }else {
-            LinearLayout lastLayout = (LinearLayout) linearLayout.getChildAt(linearLayout.getChildCount()-1);
-            for (int i = 0; i < lastLayout.getChildCount(); i++) {
-              ImageView dice = (ImageView) lastLayout.getChildAt(i);
-              totalWidth += dice.getWidth();
-              if (i == lastLayout.getChildCount() - 1) {
-                  totalWidthWithExtraDice = totalWidth + dice.getWidth();
-              }
-            }
-            if (totalWidthWithExtraDice < layoutWidth) {
-                return false;
-            }else {
-                return true;
-            }
-        }
-    }
-
-    private boolean checkIfLayoutIsSlim(LinearLayout linearLayout) {
-        double totalHeight = 0;
-        double totalHeightWithExtraLayout = 0;
-        double layoutHeight = linearLayout.getHeight();
-        for (int i = 0; i < linearLayout.getChildCount(); i++) {
-            LinearLayout currentLayout = (LinearLayout) linearLayout.getChildAt(i);
-            totalHeight += currentLayout.getHeight();
-            if (i == linearLayout.getChildCount() - 1) {
-                totalHeightWithExtraLayout = totalHeight + currentLayout.getHeight();
-            }
-        }
-        if (totalHeightWithExtraLayout < layoutHeight) {
-            return false;
-        }else {
-            return true;
-        }
     }
 
     public void decrementDie(View view) {
@@ -159,5 +117,40 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this, HistoryActivity.class);
         
         startActivity(intent);
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String[] diceTags = new String[die.size()];
+        for (ImageView dice : die) {
+            diceTags[die.indexOf(dice)] = dice.getTag().toString();
+        }
+        outState.putStringArray("dieDrawable", diceTags);
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        linearDie = findViewById(R.id.linearDie);
+        String[] diceTags = savedInstanceState.getStringArray("dieDrawable");
+        Log.d("xyz", diceTags.toString());
+        for (int i = 0; i < diceTags.length; i++) {
+            Log.d("xyz", diceTags[i]);
+            ImageView dice = new ImageView(getBaseContext());
+            dice.setImageResource(Integer.parseInt(diceTags[i]));
+            linearDie.addView(dice);
+            dice.setTag(diceTags[i]);
+            die.add(dice);
+        }
+        for (ImageView dice : die) {
+            int width = 100;
+            Log.d("xyz", "Width: " + width);
+            int height = width;
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+            dice.setLayoutParams(params);
+        }
+
     }
 }
