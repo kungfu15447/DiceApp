@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.diceapp.Models.CustomAdapter;
-import com.r0adkll.slidr.Slidr;
-import com.r0adkll.slidr.model.SlidrInterface;
+//import com.r0adkll.slidr.Slidr;
+//import com.r0adkll.slidr.model.SlidrInterface;
 
 public class HistoryActivity extends AppCompatActivity {
-    private SlidrInterface slidr;
+    //private SlidrInterface slidr;
     private ListView listView;
 
     @Override
@@ -24,15 +24,15 @@ public class HistoryActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
         CustomAdapter customAdapter = new CustomAdapter(this, R.layout.activity_history);
         listView.setAdapter(customAdapter);
-        slidr = Slidr.attach(this);
+        //slidr = Slidr.attach(this);
     }
 
-    public void lockSlide(View v){
+    /*public void lockSlide(View v){
         slidr.lock();
     }
 
     public void unlockSlide(View v){
         slidr.unlock();
-    }
+    }*/
 
 }

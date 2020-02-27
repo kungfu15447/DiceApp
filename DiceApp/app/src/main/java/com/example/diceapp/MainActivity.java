@@ -1,13 +1,16 @@
 package com.example.diceapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -28,8 +31,6 @@ public class MainActivity extends Activity {
     boolean rolled = false;
     private static final int MAXIMUM_DICE_LIMIT = 6;
     private static final int MINIMUM_DICE_LIMIT = 0;
-    private int diceWidth;
-    private int diceHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,24 +137,28 @@ public class MainActivity extends Activity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        linearDie = findViewById(R.id.linearDie);
-        String[] diceTags = savedInstanceState.getStringArray("dieDrawable");
-        Log.d("xyz", diceTags.toString());
-        for (int i = 0; i < diceTags.length; i++) {
-            Log.d("xyz", diceTags[i]);
-            ImageView dice = new ImageView(getBaseContext());
-            dice.setImageResource(Integer.parseInt(diceTags[i]));
-            linearDie.addView(dice);
-            dice.setTag(diceTags[i]);
-            die.add(dice);
-        }
-        for (ImageView dice : die) {
-            int width = 100;
-            Log.d("xyz", "Width: " + width);
-            int height = width;
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
-            dice.setLayoutParams(params);
-        }
-
+        final String[] diceTags = savedInstanceState.getStringArray("dieDrawable");
+        linearDie.getViewTreeObserver()
+                .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
+                            linearDie.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                        }
+                        else {
+                            linearDie.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                        }
+                        for (int i = 0; i < diceTags.length; i++) {
+                            ImageView dice = new ImageView(getBaseContext());
+                            dice.setImageResource(Integer.parseInt(diceTags[i]));
+                            int width = linearDie.getWidth() / 6;
+                            int height = width;
+                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
+                            dice.setLayoutParams(params);
+                            linearDie.addView(dice);
+                            die.add(dice);
+                        }
+                    }
+                });
     }
 }
