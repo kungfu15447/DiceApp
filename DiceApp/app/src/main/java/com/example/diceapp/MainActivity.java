@@ -5,16 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import com.example.diceapp.Models.Dice;
 import com.example.diceapp.Models.DiceHistory;
 
@@ -53,36 +49,44 @@ public class MainActivity extends Activity {
             ArrayList<Dice> rolls = new ArrayList<>();
             Random rng = new Random();
             for (ImageView diceView : die) {
+                ImageView diceToHistory = new ImageView(getBaseContext());
                 int roll = rng.nextInt(6) + 1;
                 switch (roll) {
                     case 1:
                         diceView.setImageResource(R.drawable.one);
                         diceView.setTag(R.drawable.one);
+                        diceToHistory.setImageResource(R.drawable.one);
                         break;
                     case 2:
                         diceView.setImageResource(R.drawable.two);
                         diceView.setTag(R.drawable.two);
+                        diceToHistory.setImageResource(R.drawable.two);
                         break;
                     case 3:
                         diceView.setImageResource(R.drawable.three);
                         diceView.setTag(R.drawable.three);
+                        diceToHistory.setImageResource(R.drawable.three);
                         break;
                     case 4:
                         diceView.setImageResource(R.drawable.four);
                         diceView.setTag(R.drawable.four);
+                        diceToHistory.setImageResource(R.drawable.four);
                         break;
                     case 5:
                         diceView.setImageResource(R.drawable.five);
                         diceView.setTag(R.drawable.five);
+                        diceToHistory.setImageResource(R.drawable.five);
                         break;
                     case 6:
                         diceView.setImageResource(R.drawable.six);
                         diceView.setTag(R.drawable.six);
+                        diceToHistory.setImageResource(R.drawable.six);
                         break;
                 }
-                Dice dice = new Dice(diceView, roll);
+                Dice dice = new Dice(diceToHistory, roll);
                 rolls.add(dice);
             }
+            addToHistory(rolls);
             rolled = false;
         }
     }
@@ -115,7 +119,6 @@ public class MainActivity extends Activity {
 
     public void showHistory(View view){
         Intent intent = new Intent(this, HistoryActivity.class);
-        
         startActivity(intent);
     }
 
