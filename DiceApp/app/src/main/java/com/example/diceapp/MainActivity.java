@@ -57,31 +57,37 @@ public class MainActivity extends Activity {
                         diceView.setImageResource(R.drawable.one);
                         diceView.setTag(R.drawable.one);
                         diceToHistory.setImageResource(R.drawable.one);
+                        diceToHistory.setTag(R.drawable.one);
                         break;
                     case 2:
                         diceView.setImageResource(R.drawable.two);
                         diceView.setTag(R.drawable.two);
                         diceToHistory.setImageResource(R.drawable.two);
+                        diceToHistory.setTag(R.drawable.two);
                         break;
                     case 3:
                         diceView.setImageResource(R.drawable.three);
                         diceView.setTag(R.drawable.three);
                         diceToHistory.setImageResource(R.drawable.three);
+                        diceToHistory.setTag(R.drawable.three);
                         break;
                     case 4:
                         diceView.setImageResource(R.drawable.four);
                         diceView.setTag(R.drawable.four);
                         diceToHistory.setImageResource(R.drawable.four);
+                        diceToHistory.setTag(R.drawable.four);
                         break;
                     case 5:
                         diceView.setImageResource(R.drawable.five);
                         diceView.setTag(R.drawable.five);
                         diceToHistory.setImageResource(R.drawable.five);
+                        diceToHistory.setTag(R.drawable.five);
                         break;
                     case 6:
                         diceView.setImageResource(R.drawable.six);
                         diceView.setTag(R.drawable.six);
                         diceToHistory.setImageResource(R.drawable.six);
+                        diceToHistory.setTag(R.drawable.six);
                         break;
                 }
                 Dice dice = new Dice(diceToHistory, roll);
