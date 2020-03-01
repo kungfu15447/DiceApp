@@ -157,14 +157,16 @@ public class MainActivity extends Activity {
                             linearDie.getViewTreeObserver().removeGlobalOnLayoutListener(this);
                         }
                         for (int i = 0; i < diceTags.length; i++) {
-                            ImageView dice = new ImageView(getBaseContext());
-                            dice.setImageResource(Integer.parseInt(diceTags[i]));
-                            int width = linearDie.getWidth() / 6;
-                            int height = width;
-                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
-                            dice.setLayoutParams(params);
-                            linearDie.addView(dice);
-                            die.add(dice);
+                            if (diceTags[i] != null && !diceTags[i].isEmpty()) {
+                                ImageView dice = new ImageView(getBaseContext());
+                                dice.setImageResource(Integer.parseInt(diceTags[i]));
+                                int width = linearDie.getWidth() / 6;
+                                int height = width;
+                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);
+                                dice.setLayoutParams(params);
+                                linearDie.addView(dice);
+                                die.add(dice);
+                            }
                         }
                     }
                 });
