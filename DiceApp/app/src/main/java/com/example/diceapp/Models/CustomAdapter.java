@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.diceapp.R;
 
@@ -60,5 +61,9 @@ public class CustomAdapter extends ArrayAdapter<Dice> {
                 dices.addView(imageViewToSet);
             }
             return view;
-        }
+    }
+
+    public void clearData() {
+        dH.clear();
+    }
 }

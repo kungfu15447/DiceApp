@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class DiceHistory extends ArrayList<ArrayList<Dice>> {
     private static DiceHistory instance = new DiceHistory();
+    private final static int FIRST_INDEX = 0;
 
     private DiceHistory(){ }
 
@@ -13,6 +14,7 @@ public class DiceHistory extends ArrayList<ArrayList<Dice>> {
 
     @Override
     public boolean add(ArrayList<Dice> rolls) {
-        return super.add(rolls);
+        super.add(FIRST_INDEX, rolls);
+        return true;
     }
 }
