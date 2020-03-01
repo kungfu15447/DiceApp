@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -25,6 +26,14 @@ public class HistoryActivity extends AppCompatActivity {
         CustomAdapter customAdapter = new CustomAdapter(this, R.layout.activity_history);
         listView.setAdapter(customAdapter);
         //slidr = Slidr.attach(this);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        listView = findViewById(R.id.listView);
+        CustomAdapter customAdapter = new CustomAdapter(this, R.layout.activity_history);
+        listView.setAdapter(customAdapter);
     }
 
     /*public void lockSlide(View v){
