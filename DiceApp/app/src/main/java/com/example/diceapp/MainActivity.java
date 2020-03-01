@@ -134,7 +134,9 @@ public class MainActivity extends Activity {
         super.onSaveInstanceState(outState);
         String[] diceTags = new String[die.size()];
         for (ImageView dice : die) {
-            diceTags[die.indexOf(dice)] = dice.getTag().toString();
+            if (dice != null && dice.getTag() != null) {
+                diceTags[die.indexOf(dice)] = dice.getTag().toString();
+            }
         }
         outState.putStringArray("dieDrawable", diceTags);
 
