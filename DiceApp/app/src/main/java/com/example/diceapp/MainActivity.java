@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
 
     ArrayList<ImageView> die;
     ArrayList<ArrayList<Dice>> dieHistory;
+    int[] diceHead;
     Button btnRoll;
     Button btnIncrement;
     Button btnDecrement;
@@ -42,6 +43,13 @@ public class MainActivity extends Activity {
         linearDie = findViewById(R.id.linearDie);
         die = new ArrayList<>();
         dieHistory = DiceHistory.getInstance();
+        diceHead = new int[]{
+                R.drawable.one,
+                R.drawable.two,
+                R.drawable.three,
+                R.drawable.four,
+                R.drawable.five,
+                R.drawable.six};
     }
 
     public void onClickRoll(View view) {
@@ -51,46 +59,13 @@ public class MainActivity extends Activity {
             Random rng = new Random();
             for (ImageView diceView : die) {
                 ImageView diceToHistory = new ImageView(getBaseContext());
-                int roll = rng.nextInt(6) + 1;
-                switch (roll) {
-                    case 1:
-                        diceView.setImageResource(R.drawable.one);
-                        diceView.setTag(R.drawable.one);
-                        diceToHistory.setImageResource(R.drawable.one);
-                        diceToHistory.setTag(R.drawable.one);
-                        break;
-                    case 2:
-                        diceView.setImageResource(R.drawable.two);
-                        diceView.setTag(R.drawable.two);
-                        diceToHistory.setImageResource(R.drawable.two);
-                        diceToHistory.setTag(R.drawable.two);
-                        break;
-                    case 3:
-                        diceView.setImageResource(R.drawable.three);
-                        diceView.setTag(R.drawable.three);
-                        diceToHistory.setImageResource(R.drawable.three);
-                        diceToHistory.setTag(R.drawable.three);
-                        break;
-                    case 4:
-                        diceView.setImageResource(R.drawable.four);
-                        diceView.setTag(R.drawable.four);
-                        diceToHistory.setImageResource(R.drawable.four);
-                        diceToHistory.setTag(R.drawable.four);
-                        break;
-                    case 5:
-                        diceView.setImageResource(R.drawable.five);
-                        diceView.setTag(R.drawable.five);
-                        diceToHistory.setImageResource(R.drawable.five);
-                        diceToHistory.setTag(R.drawable.five);
-                        break;
-                    case 6:
-                        diceView.setImageResource(R.drawable.six);
-                        diceView.setTag(R.drawable.six);
-                        diceToHistory.setImageResource(R.drawable.six);
-                        diceToHistory.setTag(R.drawable.six);
-                        break;
-                }
-                Dice dice = new Dice(diceToHistory, roll);
+                int roll = rng.nextInt(6);
+                diceView.setImageResource(diceHead[roll]);
+                diceView.setTag(diceHead[roll]);
+
+                diceToHistory.setImageResource(diceHead[roll]);
+
+                Dice dice = new Dice(diceView, roll);
                 rolls.add(dice);
             }
             addToHistory(rolls);
