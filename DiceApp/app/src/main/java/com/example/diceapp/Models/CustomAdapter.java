@@ -54,18 +54,27 @@ public class CustomAdapter extends ArrayAdapter<Dice> {
         }
 
         TextView textView = view.findViewById(R.id.txtNumber);
-
         LinearLayout dices = view.findViewById(R.id.ll_eyes);
+
         int width = 200;
         int height = width;
+        int[] diceHeads = {
+                R.drawable.one,
+                R.drawable.two,
+                R.drawable.three,
+                R.drawable.four,
+                R.drawable.five,
+                R.drawable.six};
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+
         dices.removeAllViews();
+
         textView.setText("Roll number: " + (dH.size() - position));
             for (Dice dice: dH.get(position)) {
                 int eyes = dice.diceNumber;
-                int[] x = {R.drawable.one, R.drawable.two,R.drawable.three, R.drawable.four, R.drawable.five,R.drawable.six};
+
                 ImageView diceFrame = new ImageView(getContext());
-                diceFrame.setImageResource(x[eyes-1]);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width,height);
+                diceFrame.setImageResource(diceHeads[eyes-1]);
                 diceFrame.setLayoutParams(params);
                 dices.addView(diceFrame);
             }

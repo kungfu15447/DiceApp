@@ -59,9 +59,9 @@ public class MainActivity extends Activity {
                 ArrayList<Dice> rolls = new ArrayList<>();
                 Random rng = new Random();
                 for (ImageView diceView : die) {
-                    int roll = rng.nextInt(6);
-                    diceView.setImageResource(diceHead[roll]);
-                    diceView.setTag(diceHead[roll]);
+                    int roll = rng.nextInt(6) + 1;
+                    diceView.setImageResource(diceHead[roll-1]);
+                    diceView.setTag(diceHead[roll-1]);
                     Dice dice = new Dice(diceView, roll);
                     rolls.add(dice);
                 }
