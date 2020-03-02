@@ -57,7 +57,7 @@ public class CustomAdapter extends ArrayAdapter<Dice> {
                 ImageView imageViewToSet = new ImageView(getContext());
                 int eyes = dice.diceNumber;
                 int[] x = {R.drawable.one, R.drawable.two,R.drawable.three, R.drawable.four, R.drawable.five,R.drawable.six};
-                imageViewToSet.setImageResource(x[eyes-1]);
+                imageViewToSet.setImageResource(x[eyes]);
                 dices.addView(imageViewToSet);
             }
             return view;
