@@ -52,7 +52,7 @@ public class CustomAdapter extends ArrayAdapter<Dice> {
 
         LinearLayout dices = view.findViewById(R.id.ll_eyes);
         dices.removeAllViews();
-        textView.setText("Roll number: ");
+        textView.setText("Roll number: " + position + 1);
             for (Dice dice: dH.get(position)) {
                 ImageView imageViewToSet = new ImageView(getContext());
                 int eyes = dice.diceNumber;
