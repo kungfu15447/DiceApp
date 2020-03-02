@@ -53,23 +53,21 @@ public class MainActivity extends Activity {
     }
 
     public void onClickRoll(View view) {
-        if (!rolled) {
-            rolled = true;
-            ArrayList<Dice> rolls = new ArrayList<>();
-            Random rng = new Random();
-            for (ImageView diceView : die) {
-                ImageView diceToHistory = new ImageView(getBaseContext());
-                int roll = rng.nextInt(6);
-                diceView.setImageResource(diceHead[roll]);
-                diceView.setTag(diceHead[roll]);
-
-                diceToHistory.setImageResource(diceHead[roll]);
-
-                Dice dice = new Dice(diceView, roll);
-                rolls.add(dice);
+        if (die.size() != 0) {
+            if (!rolled) {
+                rolled = true;
+                ArrayList<Dice> rolls = new ArrayList<>();
+                Random rng = new Random();
+                for (ImageView diceView : die) {
+                    int roll = rng.nextInt(6);
+                    diceView.setImageResource(diceHead[roll]);
+                    diceView.setTag(diceHead[roll]);
+                    Dice dice = new Dice(diceView, roll);
+                    rolls.add(dice);
+                }
+                addToHistory(rolls);
+                rolled = false;
             }
-            addToHistory(rolls);
-            rolled = false;
         }
     }
 
